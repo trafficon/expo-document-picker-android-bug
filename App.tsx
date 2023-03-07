@@ -1,11 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import * as DocumentPicker from 'expo-document-picker';
 
 export default function App() {
+  const pickDocument = async () => {
+    console.log('pickDocument called');
+
+    try {
+      const result = await DocumentPicker.getDocumentAsync();
+      console.log('result');
+      console.log(result);
+    } catch (error) {
+      console.log('catch');
+      console.log(error);
+    }
+  };
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <TouchableOpacity onPress={pickDocument}>
+        <Text>
+          Pick Document
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
